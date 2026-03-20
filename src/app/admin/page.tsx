@@ -11,6 +11,7 @@ import {
   UserCheck,
   UserX,
   Lock,
+  FileText,
 } from "lucide-react";
 
 type RsvpEntry = {
@@ -100,33 +101,47 @@ export default function AdminPage() {
     }
   }
 
-  function exportCSV() {
-    const headers = [
-      "Naam",
-      "Komt",
-      "Aantal personen",
-      "Bericht",
-      "Datum",
-    ];
-    const rows = entries.map((e) => [
-      e.name,
-      e.attending ? "Ja" : "Nee",
-      String(e.guests_count),
-      e.message || "",
-      new Date(e.created_at).toLocaleString("nl-NL"),
-    ]);
+  function exportPDF() {
+    const rows = entries
+      .map(
+        (e) =>
+          `<tr>
+            <td>${e.name}</td>
+            <td>${e.attending ? "✓ Komt" : "✗ Niet"}</td>
+            <td>${e.attending ? e.guests_count : "—"}</td>
+            <td>${e.message || "—"}</td>
+            <td>${new Date(e.created_at).toLocaleString("nl-NL", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}</td>
+          </tr>`
+      )
+      .join("");
 
-    const csv = [headers, ...rows]
-      .map((row) => row.map((cell) => `"${cell.replace(/"/g, '""')}"`).join(","))
-      .join("\n");
+    const html = `<!DOCTYPE html>
+<html><head><title>RSVP Export</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 24px; color: #1a1a1a; }
+  h1 { font-size: 20px; margin-bottom: 8px; }
+  .stats { font-size: 13px; color: #555; margin-bottom: 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #0f172a; color: #fff; text-align: left; padding: 8px 10px; }
+  td { padding: 7px 10px; border-bottom: 1px solid #e5e7eb; }
+  tr:nth-child(even) { background: #f9fafb; }
+  @media print { body { padding: 0; } }
+</style></head><body>
+<h1>RSVP Overzicht — Verrassingsfeest Marco</h1>
+<div class="stats">
+  Totaal reacties: ${stats.totalResponses} &nbsp;|&nbsp; Gasten komen: ${stats.totalGuests} &nbsp;|&nbsp; Afmeldingen: ${stats.totalDeclined}<br/>
+  Geëxporteerd: ${new Date().toLocaleString("nl-NL")}
+</div>
+<table><thead><tr><th>Naam</th><th>Status</th><th>Personen</th><th>Bericht</th><th>Datum</th></tr></thead>
+<tbody>${rows}</tbody></table>
+<script>window.onload=function(){window.print();}</script>
+</body></html>`;
 
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `rsvp-export-${new Date().toISOString().slice(0, 10)}.csv`;
-    link.click();
-    URL.revokeObjectURL(url);
+    const win = window.open("", "_blank");
+    if (win) {
+      win.document.write(html);
+      win.document.close();
+    }
   }
 
   // Login screen
@@ -170,13 +185,13 @@ export default function AdminPage() {
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold gold-text">Admin — RSVP&apos;s</h1>
           <Button
-            onClick={exportCSV}
+            onClick={exportPDF}
             variant="outline"
             size="sm"
             className="border-[var(--color-gold)]/20 text-[var(--color-cream)]/70 hover:bg-[var(--color-gold)]/10 cursor-pointer"
           >
             <Download className="w-4 h-4 mr-2" />
-            CSV Export
+            PDF Export
           </Button>
         </div>
 
