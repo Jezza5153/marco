@@ -223,7 +223,7 @@ export default function Home() {
                   </div>
 
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=Jacobus+Boumanlaan+55+Leusden"
+                    href="https://www.google.com/maps/search/?api=1&query=Jacobus+Boumanlaan+12+1461AA+Leusden"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="rounded-2xl border border-white/8 bg-black/15 px-3 py-3 text-center transition-colors hover:bg-white/8 active:scale-[0.98]"
@@ -233,9 +233,9 @@ export default function Home() {
                       Locatie
                     </p>
                     <p className="mt-1 text-sm font-semibold text-white">
-                      Jacobus Boumanlaan 55
+                      Jacobus Boumanlaan 12
                     </p>
-                    <p className="text-xs text-white/50">Leusden</p>
+                    <p className="text-xs text-white/50">1461AA Leusden</p>
                   </a>
                 </div>
 

@@ -55,7 +55,7 @@ export function HeroSection() {
             <div className="flex items-center gap-3 text-[var(--color-cream)]">
               <MapPin className="w-5 h-5 text-[var(--color-gold)] shrink-0" />
               <span className="text-sm sm:text-base">
-                <strong>Adres:</strong> Jacobus Boumanlaan 55, Leusden
+                <strong>Adres:</strong> Jacobus Boumanlaan 12, 1461AA Leusden
               </span>
             </div>
           </div>
