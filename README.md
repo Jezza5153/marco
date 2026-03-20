@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎉 Verrassingsfeest RSVP — Marco Jonk
 
-## Getting Started
+A beautiful, mobile-first RSVP invitation page for Marco's surprise birthday party.
 
-First, run the development server:
+## Quick Setup
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Create the database table
+
+Go to your [Neon dashboard](https://console.neon.tech) → SQL Editor → paste and run:
+
+```sql
+CREATE TABLE IF NOT EXISTS rsvps (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  attending BOOLEAN NOT NULL,
+  guests_count INTEGER NOT NULL DEFAULT 1,
+  message TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+```
+
+### 3. Set environment variables
+
+Copy `.env.example` to `.env.local` and fill in your values:
+
+```bash
+cp .env.example .env.local
+```
+
+- `DATABASE_URL` — Your Neon connection string (with `?sslmode=require`)
+- `ADMIN_PASSWORD` — Any password you choose for `/admin`
+
+### 4. Run locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 5. Deploy to Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npx vercel
+```
 
-## Learn More
+Add the same env vars in your Vercel project settings.
 
-To learn more about Next.js, take a look at the following resources:
+## Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 🎨 Festive dark theme with gold accents
+- 📱 Mobile-first responsive design
+- 📝 Simple RSVP form with validation
+- 📊 Live guest count + guest list (auto-updates)
+- 🔐 Admin dashboard at `/admin` with password protection
+- 📤 CSV export of all responses
+- 📲 WhatsApp share + copy link buttons
+- 🎯 Sticky RSVP button on mobile
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Hero Photo
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Replace `public/hero.jpg` with a real photo of Marco. Recommended: square crop, at least 400×400px.
