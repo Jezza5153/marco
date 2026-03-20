@@ -222,15 +222,21 @@ export default function Home() {
                     </p>
                   </div>
 
-                  <div className="rounded-2xl border border-white/8 bg-black/15 px-3 py-3 text-center">
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Jacobus+Boumanlaan+55+Leusden"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-2xl border border-white/8 bg-black/15 px-3 py-3 text-center transition-colors hover:bg-white/8 active:scale-[0.98]"
+                  >
                     <MapPin className="mx-auto mb-1.5 h-4 w-4 text-[var(--color-gold)]" />
                     <p className="text-[10px] uppercase tracking-[0.16em] text-white/40">
                       Locatie
                     </p>
                     <p className="mt-1 text-sm font-semibold text-white">
-                      Leusden
+                      Jacobus Boumanlaan 55
                     </p>
-                  </div>
+                    <p className="text-xs text-white/50">Leusden</p>
+                  </a>
                 </div>
 
                 <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
@@ -249,9 +255,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <p className="mt-3 text-center text-xs text-white/45">
-                  Jacobus Boumanlaan 55, Leusden
-                </p>
+
               </div>
 
               {/* Stats */}
