@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDb } from "@/lib/db";
 
+const ADMIN_PWD = process.env.ADMIN_PASSWORD || "dikkepiemel";
+
 function checkAuth(request: NextRequest): boolean {
   const authHeader = request.headers.get("x-admin-password");
-  return authHeader === process.env.ADMIN_PASSWORD;
+  return authHeader === ADMIN_PWD;
 }
 
 // Verify admin password
@@ -12,7 +14,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { password } = body;
 
-    if (password === process.env.ADMIN_PASSWORD) {
+    if (password === ADMIN_PWD) {
       return NextResponse.json({ authenticated: true });
     }
 
