@@ -108,7 +108,7 @@ export default function Home() {
   }
 
   function handleWhatsApp() {
-    const url = typeof window !== "undefined" ? window.location.href : "";
+    const url = "https://www.marcojonk.nl";
     window.open(
       `https://wa.me/?text=${encodeURIComponent(
         `Je bent uitgenodigd voor Marco zijn verrassingsfeest 🎉 Bekijk de uitnodiging en RSVP hier: ${url}`
