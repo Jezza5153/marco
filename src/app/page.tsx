@@ -64,7 +64,7 @@ export default function Home() {
     const newErrors: Record<string, string> = {};
 
     if (!name.trim()) newErrors.name = "Vul je naam in";
-    if (attending === null) newErrors.attending = "Laat weten of je komt";
+    if (attending === null) newErrors.attending = "Laat weten of jullie komen";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -194,8 +194,8 @@ export default function Home() {
                 </h1>
 
                 <p className="mx-auto max-w-xl text-sm leading-relaxed text-white/72 sm:text-[15px]">
-                  We organiseren een verrassingsfeest en jij bent uitgenodigd.
-                  Laat even weten of je erbij bent.
+                  We organiseren een verrassingsfeest en jullie zijn uitgenodigd.
+                  Laat even weten of jullie erbij zijn.
                 </p>
               </div>
 
@@ -302,10 +302,10 @@ export default function Home() {
                       <PartyPopper className="h-10 w-10 text-[var(--color-gold)]" />
                     </div>
                     <h2 className="text-2xl font-bold text-white">
-                      Top, je staat op de lijst!
+                      Top, jullie staan op de lijst!
                     </h2>
                     <p className="mt-2 max-w-sm text-sm leading-relaxed text-white/65">
-                      We zien je op 17 april 🎉
+                      We zien jullie op 17 april 🎉
                     </p>
                   </>
                 ) : (
@@ -314,10 +314,10 @@ export default function Home() {
                       <Heart className="h-10 w-10 text-[var(--color-gold)]" />
                     </div>
                     <h2 className="text-2xl font-bold text-white">
-                      Dankjewel voor je reactie
+                      Dankjewel voor jullie reactie
                     </h2>
                     <p className="mt-2 max-w-sm text-sm leading-relaxed text-white/65">
-                      Jammer dat je er niet bij kunt zijn 💛
+                      Jammer dat jullie er niet bij kunnen zijn 💛
                     </p>
                   </>
                 )}
@@ -332,7 +332,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h2 className="text-lg font-bold text-white">
-                        Laat weten of je komt
+                        Laat weten of jullie komen
                       </h2>
                       <p className="text-xs text-white/45">
                         Duurt minder dan 15 seconden
@@ -344,7 +344,7 @@ export default function Home() {
                     <div className="space-y-1.5">
                       <Input
                         id="name"
-                        placeholder="Je naam"
+                        placeholder="Jullie namen"
                         value={name}
                         onChange={(e) => {
                           setName(e.target.value);
@@ -378,7 +378,7 @@ export default function Home() {
                               : "border border-white/10 bg-black/20 text-white/72 hover:border-[var(--color-gold)]/28 hover:text-white"
                           }`}
                         >
-                          🎉 Ik kom
+                          🎉 Wij komen
                         </button>
 
                         <button
@@ -398,7 +398,7 @@ export default function Home() {
                               : "border border-white/10 bg-black/20 text-white/72 hover:border-white/20 hover:text-white"
                           }`}
                         >
-                          😔 Nee, sorry
+                          😔 Nee, helaas
                         </button>
                       </div>
 
